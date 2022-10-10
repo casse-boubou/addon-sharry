@@ -18,18 +18,6 @@ declare db_type=mariadb
 declare database=sharry
 declare -a conf_props=()
 
-#LES STATS
-    bashio::log.notice "default store: $(bashio::config 'DefaultStore')"
-    bashio::log.notice "local db enable: $(bashio::config 'use_local_db')"
-    bashio::log.notice "local db location: /share/$(bashio::config 'local_db')"
-    bashio::log.notice "maria db enable: $(bashio::config 'use_maria_db')"
-    bashio::log.notice "copy enable: $(bashio::config 'copy_db')"
-    bashio::log.notice "copy source: $(bashio::config 'copy_db_source')"
-    bashio::log.notice "copy target: $(bashio::config 'copy_db_target')"
-
-
-
-
 # --- Load USER'S CUSTOM configuration overrides ---
 bashio::log.debug "Loading 'conf_overrides'..."
 for var in $(bashio::config 'conf_overrides|keys'); do
