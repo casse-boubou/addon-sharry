@@ -9,4 +9,4 @@ on:
 
 jobs:
   workflows:
-    uses: mdegat01/addon-workflows/.github/workflows/stale.yaml@main
+    uses: erdnaxela02/ha-addon-workflows/.github/workflows/stale.yaml@main

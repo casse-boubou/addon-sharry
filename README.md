@@ -1,23 +1,14 @@
 # Home Assistant Add-on: Sharry
 
 [![GitHub Release][releases-shield]][releases]
-![Project Stage][project-stage-shield]
 [![License][license-shield]](LICENSE)
 
 ![Supports aarch64 Architecture][aarch64-shield]
-![Supports amd64 Architecture][amd64-shield]
-![Supports armhf Architecture][armhf-shield]
-![Supports armv7 Architecture][armv7-shield]
-![Supports i386 Architecture][i386-shield]
 
-[![Github Actions][github-actions-shield]][github-actions]
-![Project Maintenance][maintenance-shield]
-[![GitHub Activity][commits-shield]][commits]
-[![Community Forum][forum-shield]][forum]
-
-[Sharry][sharry] allows to share files with others in a simple way. It is a self-hosted
-web application. The basic concept is: upload files and get a url back that can
-then be shared.
+[Sharry][sharry] permet de partager des fichiers avec d'autres de manière
+simple. C'est une application web auto-hébergé. Le concept de base est le
+suivant : téléchargez des fichiers et récupérez une URL qui peut ensuite
+être partagé.
 
 [![Open your Home Assistant instance and show the add add-on repository dialog
 with a specific repository URL pre-filled.][add-repo-shield]][add-repo]
@@ -25,38 +16,41 @@ with a specific repository URL pre-filled.][add-repo-shield]][add-repo]
 
 ## About
 
-This addon allows for quick and easy file sharing. You drag and drop files in
-and get a link you can share with anyone. And you can create & share spaces others
-can use to share files you. Anyone with a share link can get to it but only authenticated
-users can make new share links. And URLs are hard to guess so users can control
-who has access. It also has some nice features like resumable file uploads and
-gallery display for photos and videos.
+Cet add-on permet un partage de fichiers rapidement et facilement.
+Vous glisser et déposez des fichiers et obtenez un lien que vous pouvez partager
+avec n'importe qui.
+Vous pouvez également créer et partager des liens avec d'autres personnes
+qu'elles utiliseront pour partager des fichiers avec vous.
+Toute personne disposant d'un lien de partage peut y accéder, mais seulement les
+utilisateurs authentifiée peuvent créer de nouveaux liens de partage.
+Les URL sont difficiles à deviner afin que les utilisateurs puissent en contrôler
+qui y a accès.
+Il a également quelques fonctionnalités intéressantes comme les téléchargements
+de fichiers avec reprise et l'affichage de la galerie pour les photos et les
+vidéos.
 
 ## Support
 
-Got questions?
+Je ne suis pas dévellopeur, n'ai aucune formation de code, je suis simplement
+autodidact.
+Si vous avez une question concernant HA et ses add-ons vous pouvez consulter:
 
-You have several ways to get them answered:
-
-- The Home Assistant [Community Forum][forum]. I am
-  [CentralCommand][forum-centralcommand] there.
-- The Home Assistant [Discord Chat Server][discord-ha]. Use the #add-ons channel,
-  I am CentralCommand#0913 there.
-
-You could also [open an issue here][issue] on GitHub.
+- [Le Forum communautaire francophone][hacf] de HomeAssistant
+- [Le Forum communautaire anglophone][forum] de HomeAssistant.
+- [Le serveur Discord][discord-ha] de HomeAssistant.
 
 ## Authors & contributors
 
-The original setup of this repository is by [Mike Degatano][mdegat01].
+Ce projet est un fork du projet original de [Mike Degatano][mike-degatano].
 
-For a full list of all authors and contributors,
-check [the contributor's page][contributors].
+Pour une liste complète des auteurs et contributeurs merci de consulter
+la [page des contributeurs][contributors].
 
 ## License
 
 MIT License
 
-Copyright (c) 2021-2022 Mike Degatano
+Copyright (c) 2021-2022 [Mike Degatano][mike-degatano]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -76,29 +70,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
+[add-addon]: https://my.home-assistant.io/redirect/supervisor_addon/?addon=c751e21a_sharry
 [add-addon-shield]: https://my.home-assistant.io/badges/supervisor_addon.svg
-[add-addon]: https://my.home-assistant.io/redirect/supervisor_addon/?addon=39bd2704_sharry
+[add-repo]: https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A//github.com/erdnaxela02/hassio-addons
 [add-repo-shield]: https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg
-[add-repo]: https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fmdegat01%2Fhassio-addons
-[amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
-[armhf-shield]: https://img.shields.io/badge/armhf-no-red.svg
-[armv7-shield]: https://img.shields.io/badge/armv7-no-red.svg
-[commits-shield]: https://img.shields.io/github/commit-activity/y/mdegat01/addon-sharry.svg
-[commits]: https://github.com/mdegat01/addon-sharry/commits/main
+[releases]: https://github.com/erdnaxela02/addon-sharry/releases
+[releases-shield]: https://img.shields.io/github/v/release/erdnaxela02/addon-sharry
+[license-shield]: https://img.shields.io/github/license/erdnaxela02/addon-sharry
+[aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
+[mike-degatano]: https://github.com/mdegat01/addon-sharry
 [contributors]: https://github.com/mdegat01/addon-sharry/graphs/contributors
-[discord-ha]: https://discord.gg/c5DvZ4e
-[forum-centralcommand]: https://community.home-assistant.io/u/CentralCommand/?u=CentralCommand
-[forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg
-[forum]: https://community.home-assistant.io/t/home-assistant-add-on-sharry/300860?u=CentralCommand
-[mdegat01]: https://github.com/mdegat01
-[github-actions-shield]: https://github.com/mdegat01/addon-sharry/workflows/CI/badge.svg
-[github-actions]: https://github.com/mdegat01/addon-sharry/actions
-[i386-shield]: https://img.shields.io/badge/i386-no-red.svg
-[issue]: https://github.com/mdegat01/addon-sharry/issues
-[license-shield]: https://img.shields.io/github/license/mdegat01/addon-sharry.svg
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2022.svg
-[project-stage-shield]: https://img.shields.io/badge/project%20stage-production%20ready-brightgreen.svg
-[releases-shield]: https://img.shields.io/github/release/mdegat01/addon-sharry.svg
-[releases]: https://github.com/mdegat01/addon-sharry/releases
 [sharry]: https://eikek.github.io/sharry/
+[discord-ha]: https://discord.gg/c5DvZ4e
+[forum]: https://community.home-assistant.io
+[hacf]: https://forum.hacf.fr/
