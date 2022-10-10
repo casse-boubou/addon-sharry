@@ -11,6 +11,8 @@ declare username
 declare password
 declare property
 
+
+
 # --- ADDITIONAL VALIDATION ---
 for var in $(bashio::config 'conf_overrides|keys'); do
     property=$(bashio::config "conf_overrides[${var}].property")
@@ -39,10 +41,34 @@ for var in $(bashio::config 'conf_overrides|keys'); do
     fi
 done
 
+
+
+
+# --- SET UP DEFAULT STORE ---
+# Be sure that at least one database is activated
+if bashio::config.equals 'DefaultStore' 'database'; then
+    if ! bashio::config.true 'use_maria_db'; then
+        bashio::log.fatal
+        bashio::log.fatal "Default-store is set to database but use Maria db is not activated"
+        bashio::log.fatal
+        bashio::exit.nok
+    fi
+elif bashio::config.equals 'DefaultStore' 'filesystem'; then
+    if ! bashio::config.true 'use_local_db'; then
+        bashio::log.fatal
+        bashio::log.fatal "Default-store is set to filesystem but use local db is not activated"
+        bashio::log.fatal
+        bashio::exit.nok
+    fi
+fi
+
+
+
+
 # --- SET UP DATABASE ---
-bashio::log.debug 'Setting up database.'
 # Use user-provided remote db
 if ! bashio::config.is_empty 'remote_db_host'; then
+    bashio::log.debug 'Setting up remote database.'
     bashio::config.require 'remote_db_type' "'remote_db_host' is specified"
     bashio::config.require 'remote_db_database' "'remote_db_host' is specified"
     bashio::config.require 'remote_db_username' "'remote_db_host' is specified"
@@ -105,4 +131,59 @@ else
     # Create database if it doesn't exist
     echo "CREATE DATABASE IF NOT EXISTS \`${DATABASE}\`;" \
         | mysql -h "${host}" -P "${port}" -u "${username}" -p"${password}"
+fi
+
+# Maria_DB
+if bashio::config.true 'use_maria_db'; then
+    bashio::log.info "Sharry is using the Maria database"
+else bashio::log.info "Maria database is not actived..."
+    bashio::log.notice "If you want use Maria database please"
+    bashio::log.notice "set use_maria_db to True in config"
+fi
+
+# Local_DB
+if bashio::config.true 'use_local_db'; then
+    bashio::log.info "Sharry is using the Local database"
+    if bashio::config.is_empty 'local_db'; then
+        bashio::log.fatal
+        bashio::log.fatal 'Sharry is using local db but directory is not defined'
+        bashio::log.fatal
+        bashio::exit.nok
+    fi
+    bashio::log.notice "Sharry is using the Local database"
+    bashio::log.notice "Please ensure that directory is included in your backups"
+else bashio::log.info "Local database is not actived..."
+    bashio::log.notice "If you want use local database please"
+    bashio::log.notice "set use_local_db to True in config"
+fi
+
+
+
+
+# --- SET UP COPY-FILE ---
+if bashio::config.true 'copy_db'; then
+    if ! bashio::config.true 'use_maria_db'; then
+        bashio::log.fatal
+        bashio::log.fatal 'Copy-File is enabled but use Maria db is not activated'
+        bashio::log.fatal
+        bashio::exit.nok
+    elif
+        ! bashio::config.true 'use_local_db'; then
+        bashio::log.fatal
+        bashio::log.fatal 'Copy-File is enabled but use Local db is not activated'
+        bashio::log.fatal
+        bashio::exit.nok
+    elif
+        bashio::config.is_empty 'copy_db_source'; then
+        bashio::log.fatal
+        bashio::log.fatal 'Copy-File is enabled but no source is defined'
+        bashio::log.fatal
+        bashio::exit.nok
+    elif
+        bashio::config.is_empty 'copy_db_target'; then
+        bashio::log.fatal
+        bashio::log.fatal 'Copy-File is enabled but no target is defined'
+        bashio::log.fatal
+        bashio::exit.nok
+    fi
 fi

@@ -25,17 +25,9 @@ RUN set -eux; \
     apk add --no-cache \
         mariadb-client=10.6.9-r0 \
         netcat-openbsd=1.130-r3 \
-        openjdk11-jre=11.0.16.1_p1-r0 \
-        ; \
-    java -version; \
-    \
-    echo "Add user for Sharry" \
-    mkdir -p /data/sharry; \
-    addgroup -S abc; \
-    adduser -u 12345 -h /data/sharry -D -S abc -G abc; \
-    chown -R abc:abc /opt/sharry;
+        openjdk11-jre=11.0.16.1_p1-r0
     
-COPY --chown=abc:abc rootfs /
+COPY rootfs /
 WORKDIR /data/sharry
 
 # Build arguments
@@ -54,13 +46,13 @@ LABEL \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
-    maintainer="mdegat01" \
+    maintainer="Frosch" \
     org.opencontainers.image.title="${BUILD_NAME}" \
     org.opencontainers.image.description="${BUILD_DESCRIPTION}" \
-    org.opencontainers.image.vendor="mdegat01's Home Assistant Add-ons" \
-    org.opencontainers.image.authors="mdegat01" \
+    org.opencontainers.image.vendor="Frosch Home Assistant Add-ons" \
+    org.opencontainers.image.authors="Frosch" \
     org.opencontainers.image.licenses="MIT" \
-    org.opencontainers.image.url="https://github.com/mdegat01/hassio-addons" \
+    org.opencontainers.image.url="https://github.com/erdnaxela02/hassio-addons" \
     org.opencontainers.image.source="https://github.com/${BUILD_REPOSITORY}" \
     org.opencontainers.image.documentation="https://github.com/${BUILD_REPOSITORY}/blob/main/README.md" \
     org.opencontainers.image.created=${BUILD_DATE} \
