@@ -47,10 +47,12 @@ done
 # --- SET UP DEFAULT STORE ---
 # Be sure that at least one database is activated
 if bashio::config.equals 'DefaultStore' 'database'; then
-    bashio::log.notice "Sharry is using the Maria database"
+    bashio::log.info "Sharry is using the Maria database storage"
+    bashio::log.notice "Please ensure that addon is included in your backups"
+    bashio::log.notice "Uninstalling the Maria DB addon will also remove Sharry's data"
 else
-    bashio::log.notice "Maria database is not actived..."
-    bashio::log.notice "If you want use Maria database please"
+    bashio::log.info "Maria database storage is not actived..."
+    bashio::log.notice "If you want use Maria database for data storage please"
     bashio::log.notice "set DefaultStore to database in Add-on config"
 fi
 if bashio::config.equals 'DefaultStore' 'filesystem'; then
@@ -60,10 +62,11 @@ if bashio::config.equals 'DefaultStore' 'filesystem'; then
         bashio::log.fatal
         bashio::exit.nok
     fi
-    bashio::log.notice "Sharry is using the Local database"
+    bashio::log.info "Sharry is using the Local database storage"
     bashio::log.notice "Please ensure that directory is included in your backups"
-else bashio::log.info "Local database is not actived..."
-    bashio::log.notice "If you want use local database please"
+    bashio::log.notice "Uninstalling the Maria DB addon will also remove Sharry's data"
+else bashio::log.info "Local database storage is not actived..."
+    bashio::log.notice "If you want use local database storage please"
     bashio::log.notice "set DefaultStore to filesystem in Add-on config"
 fi
 
@@ -120,10 +123,6 @@ else
     username=$(bashio::services 'mysql' 'username')
     password=$(bashio::services 'mysql' 'password')
 
-    bashio::log.notice "Sharry is using the Maria DB addon's database"
-    bashio::log.notice "Please ensure that addon is included in your backups"
-    bashio::log.notice "Uninstalling the Maria DB addon will also remove Sharry's data"
-
     if bashio::config.true 'reset_database'; then
         bashio::log.warning 'Resetting database...'
         echo "DROP DATABASE IF EXISTS \`${DATABASE}\`;" \
@@ -143,28 +142,38 @@ fi
 
 # --- SET UP COPY-FILE ---
 if bashio::config.true 'copy_db'; then
-    if ! bashio::config.true 'use_maria_db'; then
+    if  bashio::config.is_empty 'copy_db_source'; then
         bashio::log.fatal
-        bashio::log.fatal 'Copy-File is enabled but use Maria db is not activated'
-        bashio::log.fatal
-        bashio::exit.nok
-    elif
-        ! bashio::config.true 'use_local_db'; then
-        bashio::log.fatal
-        bashio::log.fatal 'Copy-File is enabled but use Local db is not activated'
-        bashio::log.fatal
-        bashio::exit.nok
-    elif
-        bashio::config.is_empty 'copy_db_source'; then
-        bashio::log.fatal
-        bashio::log.fatal 'Copy-File is enabled but no source is defined'
+        bashio::log.fatal 'Copy-File is enabled but no source is defined.'
         bashio::log.fatal
         bashio::exit.nok
     elif
         bashio::config.is_empty 'copy_db_target'; then
         bashio::log.fatal
-        bashio::log.fatal 'Copy-File is enabled but no target is defined'
+        bashio::log.fatal 'Copy-File is enabled but no target is defined.'
         bashio::log.fatal
         bashio::exit.nok
+    elif
+        bashio::config.equals 'copy_db_source' "$(bashio::config 'copy_db_target')"; then
+        bashio::log.fatal
+        bashio::log.fatal 'Copy-File is enabled but source and target are same.'
+        bashio::log.fatal
+        bashio::exit.nok
+    elif
+        bashio::config.equals 'copy_db_source' 'filesystem'; then
+        if bashio::config.is_empty 'local_db'; then
+            bashio::log.fatal
+            bashio::log.fatal 'Sharry is copy from local db but directory is not defined'
+            bashio::log.fatal
+            bashio::exit.nok
+        fi
+    elif
+        bashio::config.equals 'copy_db_target' 'filesystem'; then
+        if bashio::config.is_empty 'local_db'; then
+            bashio::log.fatal
+            bashio::log.fatal 'Sharry is copy to local db but directory is not defined'
+            bashio::log.fatal
+            bashio::exit.nok
+        fi
     fi
 fi

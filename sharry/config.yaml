@@ -8,7 +8,6 @@ arch:
 description: Sharry pour Home Assistant
 codenotary: erdnaxela02@hotmail.fr
 init: false
-image: ghcr.io/erdnaxela02/sharry/{arch}
 map:
   - share:rw
 services:
