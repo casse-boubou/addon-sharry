@@ -47,19 +47,24 @@ done
 # --- SET UP DEFAULT STORE ---
 # Be sure that at least one database is activated
 if bashio::config.equals 'DefaultStore' 'database'; then
-    if ! bashio::config.true 'use_maria_db'; then
+    bashio::log.notice "Sharry is using the Maria database"
+else
+    bashio::log.notice "Maria database is not actived..."
+    bashio::log.notice "If you want use Maria database please"
+    bashio::log.notice "set DefaultStore to database in Add-on config"
+fi
+if bashio::config.equals 'DefaultStore' 'filesystem'; then
+    if bashio::config.is_empty 'local_db'; then
         bashio::log.fatal
-        bashio::log.fatal "Default-store is set to database but use Maria db is not activated"
+        bashio::log.fatal 'Sharry is using local db but directory is not defined'
         bashio::log.fatal
         bashio::exit.nok
     fi
-elif bashio::config.equals 'DefaultStore' 'filesystem'; then
-    if ! bashio::config.true 'use_local_db'; then
-        bashio::log.fatal
-        bashio::log.fatal "Default-store is set to filesystem but use local db is not activated"
-        bashio::log.fatal
-        bashio::exit.nok
-    fi
+    bashio::log.notice "Sharry is using the Local database"
+    bashio::log.notice "Please ensure that directory is included in your backups"
+else bashio::log.info "Local database is not actived..."
+    bashio::log.notice "If you want use local database please"
+    bashio::log.notice "set DefaultStore to filesystem in Add-on config"
 fi
 
 
@@ -131,30 +136,6 @@ else
     # Create database if it doesn't exist
     echo "CREATE DATABASE IF NOT EXISTS \`${DATABASE}\`;" \
         | mysql -h "${host}" -P "${port}" -u "${username}" -p"${password}"
-fi
-
-# Maria_DB
-if bashio::config.true 'use_maria_db'; then
-    bashio::log.info "Sharry is using the Maria database"
-else bashio::log.info "Maria database is not actived..."
-    bashio::log.notice "If you want use Maria database please"
-    bashio::log.notice "set use_maria_db to True in config"
-fi
-
-# Local_DB
-if bashio::config.true 'use_local_db'; then
-    bashio::log.info "Sharry is using the Local database"
-    if bashio::config.is_empty 'local_db'; then
-        bashio::log.fatal
-        bashio::log.fatal 'Sharry is using local db but directory is not defined'
-        bashio::log.fatal
-        bashio::exit.nok
-    fi
-    bashio::log.notice "Sharry is using the Local database"
-    bashio::log.notice "Please ensure that directory is included in your backups"
-else bashio::log.info "Local database is not actived..."
-    bashio::log.notice "If you want use local database please"
-    bashio::log.notice "set use_local_db to True in config"
 fi
 
 

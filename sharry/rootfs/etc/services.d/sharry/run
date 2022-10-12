@@ -64,14 +64,14 @@ if bashio::config.exists 'DefaultStore'; then
     conf_props+=("-D${SHARRY}.backend.files.default-store=$(bashio::config 'DefaultStore')")
 fi
 # Maria_DB
-if bashio::config.true 'use_maria_db'; then
+if bashio::config.equals 'DefaultStore' 'database'; then
     bashio::log.info "Configuring Maria db..."
-    conf_props+=("-D${SHARRY}.backend.files.stores.database.enabled=$(bashio::config 'use_maria_db')")
+    conf_props+=("-D${SHARRY}.backend.files.stores.database.enabled=true")
 fi
 # Local_DB
-if bashio::config.true 'use_local_db'; then
+if bashio::config.equals 'DefaultStore' 'filesystem'; then
     bashio::log.info "Configuring Local db..."
-    conf_props+=("-D${SHARRY}.backend.files.stores.filesystem.enabled=$(bashio::config 'use_local_db')")
+    conf_props+=("-D${SHARRY}.backend.files.stores.filesystem.enabled=true")
     conf_props+=("-D${SHARRY}.backend.files.stores.filesystem.directory=/share/$(bashio::config 'local_db')")
     bashio::log.info "Local db locate at /share/$(bashio::config 'local_db')"
 fi

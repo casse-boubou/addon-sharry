@@ -30,21 +30,17 @@ options:
   theme: light
   log_level: info
   conf_overrides: []
-  use_maria_db: false
-  use_local_db: false
 schema:
   conf_overrides:
     - property: match(^sharry[.]restserver[.][-.a-z0-9]+)
       value: str
   DefaultStore: list(database|filesystem)
-  use_maria_db: bool
   remote_db_type: list(mariadb|postgres)?
   remote_db_host: str?
   remote_db_port: port?
   remote_db_username: str?
   remote_db_password: password?
   remote_db_database: str?
-  use_local_db: bool
   local_db: str?
   copy_db: bool?
   copy_db_source: list(database|filesystem)?
