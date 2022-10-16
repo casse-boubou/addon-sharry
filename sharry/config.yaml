@@ -20,6 +20,7 @@ ports:
 ports_description:
   9090/tcp: HTTP listen port
 options:
+  conf_overrides: []
   domain: homeassistant.local
   use_ssl: false
   default_language: us
@@ -28,19 +29,18 @@ options:
   server_secret: null
   theme: light
   log_level: info
-  conf_overrides: []
 schema:
   conf_overrides:
     - property: match(^sharry[.]restserver[.][-.a-z0-9]+)
       value: str
   DefaultStore: list(database|filesystem)
+  local_db: str?
   remote_db_type: list(mariadb|postgres)?
   remote_db_host: str?
   remote_db_port: port?
   remote_db_username: str?
   remote_db_password: password?
   remote_db_database: str?
-  local_db: str?
   copy_db: bool?
   copy_db_source: list(database|filesystem)?
   copy_db_target: list(database|filesystem)?
