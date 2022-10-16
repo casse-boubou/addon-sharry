@@ -10,7 +10,7 @@ configuration:
     name: Local_db
     description: Local data directory name if filesystem.
   remote_db_type:
-    name: Remote_db_type 
+    name: Remote_db_type
     description: The type of database if remote database.
   remote_db_host:
     name: Remote_db_host
@@ -56,7 +56,7 @@ configuration:
     description: Secret used to sign authenticator tokens generated for clients.
   log_level:
     name: Log_level
-    description: 
+    description:
   theme:
     name: Theme
     description: Default theme on Sharry.
