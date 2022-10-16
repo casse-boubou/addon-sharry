@@ -74,4 +74,3 @@ configuration:
     description: This section grant privileges to users in MariaDB.
 network:
   3306/tcp: The port to access the database engine.
-
