@@ -3,7 +3,7 @@ configuration:
   conf_overrides:
     name: Conf_overrides
     description: Configuration de sharry supplémentaires.
-  DefaultStore:
+  defaultStore:
     name: DefaultStore
     description: Database par défaut.
   local_db:

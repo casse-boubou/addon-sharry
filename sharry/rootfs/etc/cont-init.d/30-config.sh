@@ -46,7 +46,7 @@ done
 
 # --- SET UP DEFAULT STORE ---
 # Be sure that at least one database is activated
-if bashio::config.equals 'DefaultStore' 'database'; then
+if bashio::config.equals 'defaultStore' 'database'; then
     bashio::log.info "Sharry is using the Maria database storage"
     bashio::log.notice "Please ensure that addon is included in your backups"
     bashio::log.notice "Uninstalling the Maria DB addon will also remove Sharry's data"
@@ -55,7 +55,7 @@ else
     bashio::log.notice "If you want use Maria database for data storage please"
     bashio::log.notice "set DefaultStore to database in Add-on config"
 fi
-if bashio::config.equals 'DefaultStore' 'filesystem'; then
+if bashio::config.equals 'defaultStore' 'filesystem'; then
     if bashio::config.is_empty 'local_db'; then
         bashio::log.fatal
         bashio::log.fatal 'Sharry is using local db but directory is not defined'

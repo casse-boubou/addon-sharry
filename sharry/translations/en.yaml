@@ -3,7 +3,7 @@ configuration:
   conf_overrides:
     name: Conf_overrides
     description: Sharry's configuration is specified in HOCON.
-  DefaultStore:
+  defaultStore:
     name: DefaultStore
     description: Default database.
   local_db:

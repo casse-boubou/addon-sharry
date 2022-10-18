@@ -60,16 +60,16 @@ conf_props+=( \
 
 # --- SET UP DATABASE ---
 # Default database
-if bashio::config.exists 'DefaultStore'; then
-    conf_props+=("-D${SHARRY}.backend.files.default-store=$(bashio::config 'DefaultStore')")
+if bashio::config.exists 'defaultStore'; then
+    conf_props+=("-D${SHARRY}.backend.files.default-store=$(bashio::config 'defaultStore')")
 fi
 # Maria_DB
-if bashio::config.equals 'DefaultStore' 'database'; then
+if bashio::config.equals 'defaultStore' 'database'; then
     bashio::log.info "Configuring Maria db storage..."
     conf_props+=("-D${SHARRY}.backend.files.stores.database.enabled=true")
 fi
 # Local_DB
-if bashio::config.equals 'DefaultStore' 'filesystem'; then
+if bashio::config.equals 'defaultStore' 'filesystem'; then
     bashio::log.info "Configuring Local db storage..."
     conf_props+=("-D${SHARRY}.backend.files.stores.filesystem.enabled=true")
     conf_props+=("-D${SHARRY}.backend.files.stores.filesystem.directory=/share/$(bashio::config 'local_db')")
@@ -82,11 +82,11 @@ fi
 # --- SET UP COPY-FILE ---
 if bashio::config.true 'copy_db'; then
     bashio::log.info "Activate copy-file..."
-    if bashio::config.equals 'DefaultStore' 'database'; then
+    if bashio::config.equals 'defaultStore' 'database'; then
         bashio::log.info "Configuring Local db storage..."
         conf_props+=("-D${SHARRY}.backend.files.stores.filesystem.enabled=true")
         conf_props+=("-D${SHARRY}.backend.files.stores.filesystem.directory=/share/$(bashio::config 'local_db')")
-    elif bashio::config.equals 'DefaultStore' 'filesystem'; then
+    elif bashio::config.equals 'defaultStore' 'filesystem'; then
         bashio::log.info "Configuring Maria db storage..."
         conf_props+=("-D${SHARRY}.backend.files.stores.database.enabled=true")
     fi
