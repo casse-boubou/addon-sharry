@@ -11,10 +11,10 @@ on:
     branches: [main]
     types:
       - completed
+  workflow_dispatch:
 
 jobs:
   workflows:
     uses: erdnaxela02/ha-addon-workflows/.github/workflows/addon-deploy.yaml@main
     secrets:
-      CAS_API_KEY: ${{ secrets.CAS_API_KEY }}
       DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
