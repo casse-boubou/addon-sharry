@@ -17,7 +17,7 @@ webui: http://[HOST]:[PORT:9090]
 ports:
   9090/tcp: 9090
 ports_description:
-  9090/tcp: HTTP listen port
+  9090/tcp: Sharry Web interface
 options:
   conf_overrides: []
   domain: homeassistant.local

@@ -101,13 +101,13 @@ configuration spécifique seront prioritaires. Ceux qui ne peuvent pas être
 remplacés sont signalés par un commentaire
 dans la [configuration par défaut][default-config] que cet add-on utilise.
 
-#### Sub-option: `property` (required)
+#### Sub-option: `conf_overrides.property` (required)
 
 La propriété de configuration à définir. Doit être le chemin complet à
 partir de la racine. Des instructions sur la manipulation des tableaux
 peuvent être trouvées [ici][hocon-docs-arrays].
 
-#### Sub-option: `value` (required)
+#### Sub-option: `conf_overrides.value` (required)
 
 La valeur de la propriété à définir.
 
@@ -271,7 +271,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 > **_Parts of the project are copied and inspired by a project originally Copyright
-> (c) 2021-2022 [Mike Degatano][mdegat01], distributed under [MIT License.][sharrylicense]:_**
+> (c) 2021-2023 [Mike Degatano][mdegat01], distributed under [MIT License.][sharrylicense]:_**
 >
 > > Permission is hereby granted, free of charge, to any person obtaining a copy
 > > of this software and associated documentation files (the "Software"), to deal
