@@ -1,7 +1,7 @@
 ---
 name: Sharry
 url: https://github.com/erdnaxela02/addon-sharry
-version: edge
+version: dev
 slug: sharry
 arch:
   - aarch64
