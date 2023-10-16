@@ -8,7 +8,7 @@ FROM ${BUILD_FROM}
 ARG SHARRY_VERSION=v1.12.1
 
 # Add Sharry and java
-RUN set -eux \
+RUN set -eux; \
     apk update; \
     \
     apk add --no-cache --virtual .build-deps \
@@ -26,31 +26,9 @@ RUN set -eux \
         mariadb-client=10.11.5-r0 \
         netcat-openbsd=1.219-r1 \
         openjdk11-jre=11.0.20_p8-r0
-
-# Add Maria db
-RUN apk add --no-cache \
-        mariadb=10.11.5-r0 \
-        mariadb-server-utils=10.11.5-r0 \
-        pwgen=2.08-r3
-
-# add Nginx
-# hadolint ignore=DL3009
-RUN \
-    apk add --no-cache \
-        nginx=1.24.0-r7 \
-    && rm -fr \
-        /etc/nginx \
-        /tmp/* \
-    \
-    && mkdir -p /var/log/nginx \
-    && touch /var/log/nginx/error.log
-
-ENV \
-    LD_PRELOAD="/usr/local/lib/libjemalloc.so.2" \
-    S6_SERVICES_GRACETIME=18000
     
-COPY --chmod=445 rootfs /
-WORKDIR /
+COPY rootfs /
+WORKDIR /data/sharry
 
 # Build arguments
 ARG BUILD_ARCH
