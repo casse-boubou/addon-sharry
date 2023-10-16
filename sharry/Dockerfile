@@ -1,31 +1,31 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.2.2
+ARG BUILD_FROM=ghcr.io/hassio-addons/base
 
 # https://github.com/hassio-addons/addon-base/releases
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
 # https://github.com/eikek/sharry/releases
-ARG SHARRY_VERSION=v1.12.1
+ARG SHARRY_VERSION=1.11.0
 
 # Add Sharry and java
 RUN set -eux; \
     apk update; \
     \
     apk add --no-cache --virtual .build-deps \
-        unzip=6.0-r14 \
+        unzip=6.0-r9 \
         ; \
     mkdir -p /opt; \
     curl -s -J -L -o /tmp/sharry.zip \
-        "https://github.com/eikek/sharry/releases/download/${SHARRY_VERSION}/sharry-restserver-${SHARRY_VERSION#v}.zip"; \
+        "https://github.com/eikek/sharry/releases/download/v${SHARRY_VERSION}/sharry-restserver-${SHARRY_VERSION}.zip"; \
     unzip /tmp/sharry.zip -d /opt; \
-    mv /opt/sharry-restserver-${SHARRY_VERSION#v} /opt/sharry; \
+    mv /opt/sharry-restserver-${SHARRY_VERSION} /opt/sharry; \
     rm /tmp/sharry.zip; \
     apk del .build-deps; \
     \
     apk add --no-cache \
-        mariadb-client=10.11.5-r0 \
-        netcat-openbsd=1.219-r1 \
-        openjdk11-jre=11.0.20_p8-r0
+        mariadb-client=10.6.10-r0 \
+        netcat-openbsd=1.130-r3 \
+        openjdk11-jre=11.0.17_p8-r1
     
 COPY rootfs /
 WORKDIR /data/sharry
