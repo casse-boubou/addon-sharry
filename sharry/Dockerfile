@@ -25,20 +25,8 @@ RUN set -eux \
     apk add --no-cache \
         mariadb-client=10.11.5-r0 \
         netcat-openbsd=1.219-r1 \
-        openjdk11-jre=11.0.21_p9-r0
-
-# add Nginx
-# hadolint ignore=DL3009
-RUN \
-    apk add --no-cache \
-        nginx=1.24.0-r7 \
-    && rm -fr \
-        /etc/nginx \
-        /tmp/* \
-    \
-    && mkdir -p /var/log/nginx \
-    && touch /var/log/nginx/error.log
-
+        openjdk11-jre=11.0.20_p8-r0
+    
 COPY --chmod=445 rootfs /
 WORKDIR /
 
