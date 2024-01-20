@@ -25,7 +25,7 @@ RUN set -eux \
     apk add --no-cache \
         mariadb-client=10.11.5-r3 \
         netcat-openbsd=1.226-r0 \
-        openjdk17-jre=17.0.9_p8-r0
+        openjdk17-jre=17.0.10_p7-r0
 
 # add Nginx
 # hadolint ignore=DL3009
