@@ -27,18 +27,6 @@ RUN set -eux \
         netcat-openbsd=1.226-r0 \
         openjdk17-jre=17.0.11_p9-r0
 
-# add Nginx
-# hadolint ignore=DL3009
-RUN \
-    apk add --no-cache \
-        nginx=1.26.0-r1 \
-    && rm -fr \
-        /etc/nginx \
-        /tmp/* \
-    \
-    && mkdir -p /var/log/nginx \
-    && touch /var/log/nginx/error.log
-
 COPY --chmod=445 rootfs /
 WORKDIR /
 
