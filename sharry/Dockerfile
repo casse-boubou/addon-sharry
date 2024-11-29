@@ -23,9 +23,9 @@ RUN set -eux \
     apk del .build-deps; \
     \
     apk add --no-cache \
-        mariadb-client=10.11.8-r0 \
+        mariadb-client=10.11.10-r0 \
         netcat-openbsd=1.226-r0 \
-        openjdk17-jre=17.0.12_p7-r0
+        openjdk17-jre=17.0.13_p11-r0
 
 COPY --chmod=445 rootfs /
 WORKDIR /
