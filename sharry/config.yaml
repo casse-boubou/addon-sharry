@@ -6,7 +6,6 @@ slug: sharry
 arch:
   - aarch64
 description: Sharry pour Home Assistant
-codenotary: erdnaxela02@hotmail.fr
 init: false
 map:
   - share:rw
