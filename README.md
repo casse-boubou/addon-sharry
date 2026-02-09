@@ -1,4 +1,4 @@
-# Home Assistant Add-on: Sharry
+# Home Assistant App: Sharry
 
 [![GitHub Release][releases-shield]][releases]
 [![License][license-shield]](LICENSE)
@@ -10,9 +10,9 @@ simple. C'est une application web auto-hébergé. Le concept de base est le
 suivant : téléchargez des fichiers et récupérez une URL qui peut ensuite
 être partagé.
 
-[![Open your Home Assistant instance and show the add add-on repository dialog
+[![Open your Home Assistant instance and show the add app repository dialog
 with a specific repository URL pre-filled.][add-repo-shield]][add-repo]
-[![Open your Home Assistant instance and show the dashboard of a Supervisor add-on.][add-addon-shield]][add-addon]
+[![Open your Home Assistant instance and show the dashboard of a Supervisor app.][add-app-shield]][add-app]
 
 ## About
 
@@ -20,7 +20,7 @@ Ce projet est un fork du projet original de [Mike Degatano][mike-degatano] auque
 j'ai rajouter la possibilitée de stocker les fichier directement dans un dossier
 local ainsi que de copier la base de donnée de Mariadb à un stockage local ou inversement.
 
-Cet add-on permet un partage de fichiers rapidement et facilement.
+Cet app permet un partage de fichiers rapidement et facilement.
 Vous glisser et déposez des fichiers et obtenez un lien que vous pouvez partager
 avec n'importe qui.
 Vous pouvez également créer et partager des liens avec d'autres personnes
@@ -37,7 +37,7 @@ vidéos.
 
 Je ne suis pas dévellopeur, n'ai aucune formation de code, je suis simplement
 autodidact.
-Si vous avez une question concernant HA et ses add-ons vous pouvez consulter:
+Si vous avez une question concernant HA et ses apps vous pouvez consulter:
 
 - [Le Forum communautaire francophone][hacf] de HomeAssistant
 - [Le Forum communautaire anglophone][forum] de HomeAssistant.
@@ -74,8 +74,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[add-addon]: https://my.home-assistant.io/redirect/supervisor_addon/?addon=c751e21a_sharry
-[add-addon-shield]: https://my.home-assistant.io/badges/supervisor_addon.svg
+[add-app]: https://my.home-assistant.io/redirect/supervisor_addon/?addon=c751e21a_sharry
+[add-app-shield]: https://my.home-assistant.io/badges/supervisor_addon.svg
 [add-repo]: https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A//github.com/casse-boubou/hassio-addons
 [add-repo-shield]: https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg
 [releases]: https://github.com/casse-boubou/addon-sharry/releases
