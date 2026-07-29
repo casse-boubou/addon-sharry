@@ -190,7 +190,7 @@ else
             | mysql -h "${host}" -P "${port}" -u "${username}" -p"${password}"
 
         # Remove `reset_database` option
-        bashio::addon.option 'reset_database'
+        bashio::app.option 'reset_database'
     fi
 
     # Create database if it doesn't exist

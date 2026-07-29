@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:19.0.0
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:21.0.0
 
 # https://github.com/hassio-addons/addon-base/releases
 # hadolint ignore=DL3006
@@ -12,7 +12,7 @@ RUN set -eux \
     apk update; \
     \
     apk add --no-cache --virtual .build-deps \
-        unzip=6.0-r15 \
+        unzip=6.0-r16 \
         ; \
     mkdir -p /opt; \
     curl -s -J -L -o /tmp/sharry.zip \
@@ -23,9 +23,9 @@ RUN set -eux \
     apk del .build-deps; \
     \
     apk add --no-cache \
-        mariadb-client=11.4.8-r0 \
-        netcat-openbsd=1.229.1-r0 \
-        openjdk17-jre=17.0.18_p8-r0
+        mariadb-client=11.8.8-r0 \
+        netcat-openbsd=1.234.1-r0 \
+        openjdk17-jre=17.0.19_p10-r0
 
 COPY --chmod=445 rootfs /
 WORKDIR /
