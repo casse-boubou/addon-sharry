@@ -5,7 +5,7 @@ ARG BUILD_FROM=ghcr.io/hassio-addons/base:21.0.0
 FROM ${BUILD_FROM}
 
 # https://github.com/eikek/sharry/releases
-ARG SHARRY_VERSION=v1.16.0
+ARG SHARRY_VERSION="v1.16.0"
 
 # Add Sharry and java
 RUN set -eux \
@@ -25,7 +25,9 @@ RUN set -eux \
     apk add --no-cache \
         mariadb-client=11.8.8-r0 \
         netcat-openbsd=1.234.1-r0 \
-        openjdk17-jre=17.0.19_p10-r0
+        openjdk17-jre=17.0.19_p10-r0 \
+        ; \
+    rm -rf /var/cache/apk/*
 
 COPY --chmod=445 rootfs /
 WORKDIR /
